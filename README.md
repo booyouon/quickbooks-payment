@@ -19,12 +19,13 @@ var QuickBooks = require('quickbooks')
 var qbo = new QuickBooks(consumerKey,
                          consumerSecret,
                          oauthToken,
-                         oauthTokenSecret, // false for OAuth 2.0
+                         false, // no token secret for oAuth 2.0
                          realmId,
-                         refreshToken, // needed for OAuth 2.0
-                         oauthversion, // 2.0 if OAuth 2.0
-                         false, // don't use the sandbox (i.e. for testing)
-                         true); // turn debugging on
+                         false, // use the sandbox?
+                         true, // enable debugging?
+                         null, // set minorversion, or null for the latest version
+                         '2.0', //oAuth version
+                         refreshToken);
 
 var card = {
       name: 'Brad Smith',
