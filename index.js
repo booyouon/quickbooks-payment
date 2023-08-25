@@ -174,6 +174,28 @@ Quickbooks.prototype.charge = function (charge, callback) {
 };
 
 /**
+ * Batch operation to enable an application to perform multiple operations in a single request.
+ * The following batch items are supported:
+     create
+     update
+     delete
+     query
+ * The maximum number of batch items in a single request is 30.
+ *
+ * @param  {object} items - JavaScript array of batch items
+ * @param  {function} callback - Callback function which is called with any error and list of BatchItemResponses
+ */
+QuickBooks.prototype.batch = function (items, callback) {
+  module.request(
+    this,
+    "post",
+    { url: "/batch" },
+    { BatchItemRequest: items },
+    callback
+  );
+};
+
+/**
  * Allows you to capture funds for an existing charge that was intended to be captured at a later time.
  *
  * @param {string} chargeId - of previously created charge
